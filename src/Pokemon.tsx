@@ -11,7 +11,7 @@ export const Pokemon = ({id, src}: any, index: number, offset: number, size: num
         '--index': index+offset,
     }
     try {
-        const result = fu(index+offset, size, x, y, delta)
+        const result: any = fu ? fu(index+offset, size, x, y, delta) : {}
         Object.keys(result).forEach((key) => {
             (properties as any)[`--${key}`] = result[key] 
         })
@@ -21,7 +21,7 @@ export const Pokemon = ({id, src}: any, index: number, offset: number, size: num
    
 
     return (
-        <div className="pokemon" key={id} style={properties}>
+        <div className="pokemon" key={id} style={properties as any}>
             <img src={src} alt="" />
         </div>
     )
@@ -42,6 +42,6 @@ export const Pokemons = ({pokemons}: any) => {
     }, [])
 
     return <div className="pokemons" >
-        {pokemons.map((p, i) => Pokemon(p, i, offset, pokemons.length, delta))}
+        {pokemons.map((p: any, i: number) => Pokemon(p, i, offset, pokemons.length, delta))}
     </div>
 }

@@ -40,7 +40,7 @@ function App() {
 
     addEventListener('resize', onResize)
 
-    function onPointerMove(e) {
+    function onPointerMove(e: PointerEvent) {
         setMouse({x: e.x, y: e.y})
     }
 
@@ -48,7 +48,7 @@ function App() {
 
     return () => {
         removeEventListener('resize', onResize)
-        removeEventListener('onPointerMove', onPointerMove)
+        removeEventListener<any>('onPointerMove', onPointerMove)
     }
   }, [])
 

@@ -134,7 +134,7 @@ const functionsList = {
     }`
 }
 
-export type FType = null | ((arg: number) => {x: number, y: number, s:number})
+export type FType = null | ((index: number, size: number, x: number, y: number, delta: number) => {x?: number, y?: number, s?:number, rx?: number, ry?: number, t?:number, index?:number })
 
 export const FunctionContext = createContext<FType>(null)
 
@@ -172,7 +172,7 @@ export const Function: FunctionComponent = ({children}) => {
             <textarea  rows={14} cols={50} onInput={(e) => onInput(e.currentTarget.value)} value={value}/>
             <div>
 
-                <select name="" id="" onChange={(e: any) => onInput(functionsList[e.currentTarget.value])}>
+                <select name="" id="" onChange={(e: any) => onInput((functionsList as any)[e.currentTarget.value])}>
                     {Object.keys(functionsList).map(key => <option value={key} key={key}>{key}</option>)}
                 </select>
             </div>
