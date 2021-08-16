@@ -131,7 +131,22 @@ const functionsList = {
            index: qtd + Math.abs(delta),
            t: 0.2
         }
-    }`
+    }`,
+    'Rosácea': `(index, qtd, x, y, d) => {
+        const atraso = 0.0001 * d
+        const ratio = height/width
+        const angulo = ((index-1) * 2*Math.PI/(qtd))
+        const petalas = 3
+
+        return {
+           x: Math.cos(petalas*(angulo + atraso)) * ratio * Math.cos(angulo + atraso)/3 + 0.5, 
+           y: Math.cos(petalas*(angulo + atraso)) * Math.sin(angulo + atraso)/3 + 0.5, 
+           s: 1.5,
+           ry: 1, 
+           index: index
+        }
+    }
+    `
 }
 
 export type FType = null | ((index: number, size: number, x: number, y: number, delta: number) => {x?: number, y?: number, s?:number, rx?: number, ry?: number, t?:number, index?:number })
